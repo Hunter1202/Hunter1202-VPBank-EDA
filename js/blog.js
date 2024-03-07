@@ -2,7 +2,6 @@ const storedBLogs = localStorage.getItem('blog');
 const blog = storedBLogs ? JSON.parse(storedBLogs) : [];
 
 function addBlogForm() {
-    // Create the form elements with Bootstrap classes
     const formHtml = `
         <form id="addBlogForm" class="mt-4">
             <div class="form-group">
@@ -66,6 +65,10 @@ function manageBlog() {
 
     const tableHeader = document.createElement('thead');
     tableHeader.innerHTML = `
+    
+     <button class="btn btn-success btn-sm" onclick="addBlogForm()">
+                    <i class="fa-solid fa-blog"></i> Thêm tin tức
+                </button>
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Tiêu đề</th>
@@ -135,8 +138,8 @@ function editBlog(id) {
 
     if (blogToEdit) {
         // Set editingIndex to the index of the blog being edited
-        editingIndex = blog.findIndex(blog => blog.blogId === id);
-
+        blogEditingIndex = blog.findIndex(blog => blog.blogId === id);
+        console.log("id blog: " + id);
         // Populate the form fields with existing blog data
         document.getElementById('newTitle').value = blogToEdit.title;
         document.getElementById('newContent').value = blogToEdit.content;
@@ -152,7 +155,7 @@ function editBlog(id) {
 
 //update blog after finish modal form
 function updateBlog() {
-    if (editingIndex !== -1) {
+    if (blogEditingIndex !== -1) {
         // Retrieve updated values from the form
         const updatedTitle = document.getElementById('newTitle').value;
         const updatedContent = document.getElementById('newContent').value;
@@ -160,15 +163,15 @@ function updateBlog() {
         const updatedImage = document.getElementById('newImage').value;
 
         // Update the blog data at the specified index
-        blog[editingIndex].title = updatedTitle;
-        blog[editingIndex].content = updatedContent;
-        blog[editingIndex].date = updatedDate;
-        blog[editingIndex].image = updatedImage;
+        blog[blogEditingIndex].title = updatedTitle;
+        blog[blogEditingIndex].content = updatedContent;
+        blog[blogEditingIndex].date = updatedDate;
+        blog[blogEditingIndex].image = updatedImage;
 
         // Update local storage with the modified blog array
         localStorage.setItem('blog', JSON.stringify(blog));
 
-        editingIndex = -1;
+        blogEditingIndex = -1;
 
         // After updating, close the modal
         $('#editBlogModal').modal('hide');
