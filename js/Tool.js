@@ -78,6 +78,9 @@ function manageTool() {
 
     const tableHeader = document.createElement('thead');
     tableHeader.innerHTML = `
+        <button class="btn btn-success btn-sm" onclick="addToolForm()">
+                            <i class="fa-solid fa-plus"></i> Thêm mới
+                        </button>
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Tên title</th>
@@ -151,7 +154,7 @@ function editTool(id) {
 
     if (ToolToEdit) {
         // Set editingIndex to the index of the Tool being edited
-        editingIndex = Tool.findIndex(Tool => Tool.ToolId === id);
+        editingIndex = Tool.findIndex(Tool => Tool.ToolId === id);  // remember 2 fix this pls
 
         // Populate the form fields with existing Tool data
         document.getElementById('title').value = ToolToEdit.title;
