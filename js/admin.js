@@ -228,7 +228,7 @@ function updateUser() {
 }
 
 function navigateToIndex() {
-    window.location.href = 'index.html';
+    window.location.href = 'admin.html';
 }
 
 
