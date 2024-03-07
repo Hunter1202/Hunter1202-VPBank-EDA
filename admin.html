@@ -127,7 +127,7 @@
 <!-- Header -->
 <div id="header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
     <div class="logo">
-        <a href="admin.html"
+        <a style="position: fixed; margin-top: -25px;" href="admin.html"
         ><img src="./img/logoEDA.png" alt="#" style="width: 50%" />
         </a>
     </div>
@@ -162,15 +162,11 @@
             <i class="fas fa-user"></i>
             <span>Cấu hình User</span>
         </li>
-        <li class="nav-item option" onclick="addBlogForm()">
-            <i class="fa-solid fa-blog"></i>
-            <span>Thêm tin tức</span>
-        </li>
         <li class="nav-item option" onclick="manageBlog()">
             <i class="fas fa-file-alt"></i>
             <span>Quản trị tin tức</span>
         </li>
-        <li class="nav-item option" onclick="displaySlider()">
+        <li class="nav-item option" onclick="manageSlider()">
             <i class="fas fa-desktop"></i>
             <span>Quản trị giao diện</span>
         </li>
@@ -178,10 +174,10 @@
             <i class="fa-solid fa-gear"></i>
             <span>Quản trị công cụ</span>
         </li>
-        <li class="nav-item option" onclick="addToolForm()">
-            <i class="icofont-info-circle"></i>
-            <span>Mục thông tin</span>
-        </li>
+<!--        <li class="nav-item option" onclick="addToolForm()">-->
+<!--            <i class="icofont-info-circle"></i>-->
+<!--            <span>Mục thông tin</span>-->
+<!--        </li>-->
         <li class="nav-item option" onclick="logout()">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span>Đăng xuất</span>
@@ -210,8 +206,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="./js/admin.js"></script>
 <script src="./js/blog.js"></script>
-<script src="./js/interface.js"></script>
-<script src="./js/Tool.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/tool.js"></script>
 </body>
 
 <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
@@ -270,7 +266,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="editSlider" tabindex="-1" role="dialog" aria-labelledby="editSliderModalLabel" aria-hidden="true">
+<div class="modal fade" id="editSliderModal" tabindex="-1" role="dialog" aria-labelledby="editSliderModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -280,18 +276,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <label for="editImage">Ảnh:</label>
+                <label for="img">Ảnh:</label>
                 <!-- Display the existing image in an <img> tag -->
-                <img id="editImagePreview" src="" alt="Image Preview" style="max-width: 50%;">
+<!--                <img id="editImagePreview" src="" alt="Image Preview" style="max-width: 50%;">-->
 
                 <!-- Input for selecting a new image -->
-                <input type="file" id="editImage" class="form-control">
+                <input type="text" id="img" class="form-control">
 
-                <label for="editP1">Văn bản 1:</label>
-                <input type="text" id="editP1" class="form-control">
+                <label for="p1">Văn bản 1:</label>
+                <input type="text" id="p1" class="form-control">
 
-                <label for="editP2">Văn bản 2:</label>
-                <input type="text" id="editP2" class="form-control">
+                <label for="p2">Văn bản 2:</label>
+                <input type="text" id="p2" class="form-control">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="updateSlider()">Lưu</button>
