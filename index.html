@@ -210,25 +210,15 @@
 
 <!-- Start Why choose -->
 <section class="why-choose section" style="margin-top: -50px;">
-      <a class="section-title underline-on-hover" href="Gioithieu.html">
-        <h2 class="underline-on-hover">Giới thiệu</h2>
-      </a>
-    <div class="text-center" style="margin-top: -50px;">
-      <img class="text-center" src="./img/35AE1355-B039-4AC9-99A7-2C907A06A5E7_1_201_a.jpeg" alt="#" style="width: 300%" />
-    </div>
+  <a class="section-title underline-on-hover" href="Gioithieu.html">
+    <h2 class="underline-on-hover">Giới thiệu</h2>
+  </a>
+  <div class="text-center" style="margin-top: -50px;">
+    <img class="text-center" src="./img/35AE1355-B039-4AC9-99A7-2C907A06A5E7_1_201_a.jpeg" alt="#" style="width: 300%" />
+  </div>
 </section>
 <!--/ End Why choose -->
-<!-- Start Blog section -->
-<section style=" margin-top: -150px;" class="blog section" id="blog">
-  <div class="section-title" >
-    <h2>Các hoạt động nổi bật</h2>
-  </div>
-  <div class="container">
-    <div style="margin-top: -30px;" class="row" id="blogList">
-    </div>
-  </div>
-</section>
-<!-- End Blog section -->
+
 <!-- Start tool section -->
 <section style=" margin-top: -150px;" class="blog section" id="tool">
   <div class="section-title" >
@@ -239,8 +229,19 @@
     </div>
   </div>
 </section>
-<!-- End tool section -->
 
+<!-- End tool section -->
+<!-- Start Blog section -->
+<section style=" margin-top: -10px;" class="blog section" id="blog">
+  <!--  <div class="section-title" >-->
+  <!--    <h2>Các hoạt động nổi bật</h2>-->
+  <!--  </div>-->
+  <div class="container">
+    <div style="margin-top: -30px;" class="row" id="blogList">
+    </div>
+  </div>
+</section>
+<!-- End Blog section -->
 <!--    footer start-->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -301,10 +302,11 @@
 <script src="./js/admin.js"></script>
 <script src="./js/blog.js"></script>
 <script src="./js/Tool.js"></script>
+<script src="./js/slider.js"></script>
 <script>
   function popup() {
-      // Open the edit user modal
-      $('#popup').modal('show');
+    // Open the edit user modal
+    $('#popup').modal('show');
   }
 </script>
 </body>
@@ -322,8 +324,8 @@
       <div class="modal-body">
         <p>Những câu hỏi về tiền trợ cập, phúc lợi, bảng lương, thuế thu nhập, các chế độ thai sản, đầu mối liên hệ...</p>
       </div>
-        <button type="button" class="btn btn-success text-center" data-dismiss="modal">Chi tiết</button>
-      </div>
+      <button type="button" class="btn btn-success text-center" data-dismiss="modal">Chi tiết</button>
     </div>
   </div>
+</div>
 </html>
