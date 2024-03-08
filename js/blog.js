@@ -13,6 +13,11 @@ function addBlogForm() {
                 <label for="newContent">Nội dung:</label>
                 <textarea id="newContent" class="form-control" rows="4" placeholder="Nội dung bài viết"></textarea>
             </div>
+            
+            <div class="form-group">
+                <label for="newLink">Link:</label>
+                <textarea id="newLink" class="form-control" rows="3" placeholder="Liên kết"></textarea>
+            </div>
 
             <div class="form-group">
                 <label for="newDate">Ngày đăng:</label>
@@ -21,7 +26,7 @@ function addBlogForm() {
 
             <div class="form-group">
                 <label for="newImage">URL ảnh:</label>
-                <input type="text" id="newImage" class="form-control" placeholder="img/vanhoa2.jpeg">
+                <input type="text" id="newImage" class="form-control" placeholder="img/slider3.jpg">
             </div>
             
             <div class="form-group text-center">
@@ -34,11 +39,11 @@ function addBlogForm() {
     document.getElementById("admConfiguration").innerHTML = formHtml;
 }
 
-let blogId = 0;
 function saveBlog() {
-    blogId++;
+    let blogId = Date.now();
     let title = document.getElementById('newTitle').value;
     let content = document.getElementById('newContent').value;
+    let link = document.getElementById('newLink').value;
     let date = document.getElementById('newDate').value;
     let image = document.getElementById('newImage').value;
 
@@ -48,7 +53,7 @@ function saveBlog() {
         blog.shift();
     }
 
-    blog.push({ blogId, image, date, title, content});
+    blog.push({ blogId, image, date, link, title, content});
     localStorage.setItem('blog', JSON.stringify(blog));
     alert('Thêm blog mới thành công!');
 
@@ -73,6 +78,7 @@ function manageBlog() {
             <th scope="col">Id</th>
             <th scope="col">Tiêu đề</th>
             <th scope="col">Nội dung</th>
+            <th scope="col">Link</th>
             <th scope="col">Ngày đăng</th>
             <th scope="col">Ảnh</th>
             <th scope="col">Thao tác</th>
@@ -90,6 +96,7 @@ function manageBlog() {
             <td>${i + 1}</td>
             <td>${blog.title}</td>
             <td>${blog.content}</td>
+            <td><a href="${getUrlWithProtocol(blog.link)}">${blog.link}</a></td>
             <td>${blog.date}</td>
             <td>
                 <img src="${blog.image}" alt="Blog Image" style="max-width: 100px; max-height: 100px;">
@@ -132,6 +139,7 @@ function deleteBlog(title) {
 }
 
 // Function to populate the form for editing a blog
+let blogEditingIndex = -1;
 function editBlog(id) {
     // Retrieve the blog data using the index
     const blogToEdit = blog.find(blog => blog.blogId === id);
@@ -140,9 +148,11 @@ function editBlog(id) {
         // Set editingIndex to the index of the blog being edited
         blogEditingIndex = blog.findIndex(blog => blog.blogId === id);
         console.log("id blog: " + id);
+
         // Populate the form fields with existing blog data
         document.getElementById('newTitle').value = blogToEdit.title;
         document.getElementById('newContent').value = blogToEdit.content;
+        document.getElementById('newLink').value = blogToEdit.link;
         document.getElementById('newDate').value = blogToEdit.date;
         document.getElementById('newImage').value = blogToEdit.image;
 
@@ -161,12 +171,14 @@ function updateBlog() {
         const updatedContent = document.getElementById('newContent').value;
         const updatedDate = document.getElementById('newDate').value;
         const updatedImage = document.getElementById('newImage').value;
+        const updatedLink = document.getElementById('newLink').value;
 
         // Update the blog data at the specified index
         blog[blogEditingIndex].title = updatedTitle;
         blog[blogEditingIndex].content = updatedContent;
         blog[blogEditingIndex].date = updatedDate;
         blog[blogEditingIndex].image = updatedImage;
+        blog[blogEditingIndex].link = updatedLink;
 
         // Update local storage with the modified blog array
         localStorage.setItem('blog', JSON.stringify(blog));
@@ -201,7 +213,7 @@ function displayBlogs() {
           <div class="news-body">
             <div class="news-content">
               <div class="date">${blog.date}</div>
-              <h2><a href="">${blog.title}</a></h2>
+              <h2><a href="${getUrlWithProtocol(blog.link)}">${blog.title}</a></h2>
               <p class="text">${blog.content}</p>
             </div>
           </div>
@@ -217,5 +229,18 @@ function displayBlogs() {
 document.addEventListener("DOMContentLoaded", function () {
     // Display the blogs on page load
     displayBlogs();
+});
+
+function getUrlWithProtocol(url) {
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        return "http://" + url;
+    }
+    return url;
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Display the Tools on page load
+    displayTools();
 });
 
