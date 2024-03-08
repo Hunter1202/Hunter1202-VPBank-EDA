@@ -7,7 +7,7 @@ function addSliderForm() {
             <div class="news-title text-center"><h2>Thêm Slider</h2></div>
             <div class="form-group">
                 <label for="img">Ảnh slider</label>
-                <input type="text" id="img" class="form-control" placeholder="img/vanhoa2.jpeg" required onfocus>
+                <input type="text" id="img" class="form-control" placeholder="img/slider3.jpg" required onfocus>
             </div>
 
             <div class="form-group">
@@ -30,20 +30,25 @@ function addSliderForm() {
     document.getElementById("admConfiguration").innerHTML = formHtml;
 }
 
-let sliderId = 0;
+let addedNewSlider = false;
 function saveSlider() {
-    sliderId++;
+    sliderId = Date.now();
     let img = document.getElementById('img').value;
     let p1 = document.getElementById('p1').value;
     let p2 = document.getElementById('p2').value;
 
     slider.push({sliderId, img, p1, p2});
     localStorage.setItem('slider', JSON.stringify(slider));
-    alert('Thêm slider mới thành công!');
+        if (!addedNewSlider) {
+        alert('Thêm slider mới thành công!');
+        addedNewSlider = true; 
+        
+    }
 
     // Clear the form or perform other actions after submission
     document.getElementById("add-sliderForm").reset();
 }
+
 
 function manageSlider() {
     const sliderConfig = document.getElementById('admConfiguration');
@@ -165,140 +170,140 @@ function updateSlider() {
     }
 }
 
-function displaySlider() {
-    const sliderListContainer = document.getElementById("sliderList");
+// function displaySlider() {
+//     const sliderListContainer = document.getElementById("sliderList");
 
-    sliderListContainer.innerHTML = "";
+//     sliderListContainer.innerHTML = "";
 
-    // Iterate through slider data and create HTML for each slider
-    slider.forEach((slider, index) => {
-        const sliderHTML = `
-        <style>
-                    /*===========================
-        \tStart Hero Area CSS
-        =============================*/
-        .slider-2 .single-slider-2 {
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            background-repeat:no-repeat;
-            justify-content: center;
-        }
-        .slider-2 .single-slider-2 .text{
-            margin-top:120px;
-        }
-        .slider-2.index2 .single-slider-2 .text{
-            margin-top:150px;
-        }
-        .slider-2 .single-slider-2 h1 {
-            color: #2C2D3F;
-            font-size: 38px;
-            font-weight: 700;
-            margin: 0;
-            padding: 0;
-            line-height: 42px;
-        }
-        .slider-2 .single-slider-2 h1 span{
-            color:#00b74f;
-        }
-        .slider-2 .single-slider-2 p {
-            color: #000000;
-            margin-top: 27px;
-            font-weight: 400;
-        }
-        .slider-2 .single-slider-2 .button{
-            margin-top:30px;
-        }
-        .slider-2 .single-slider-2 .btn{
-            color:#fff;
-            background:#00b74f;
-            font-weight:500;
-            display:inline-block;
-            margin:0;
-            margin-right:10px;
-        }
-        .slider-2 .single-slider-2 .btn:last-child{
-            margin:0;
-        }
-        .slider-2 .single-slider-2 .btn.primary{
-            background:#2C2D3F;
-            color:#fff;
-        }
-        .slider-2 .single-slider-2 .btn.primary:before{
-            background:#00b74f;
-        }
-        .slider-2 .owl-carousel .owl-nav {
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            margin-top:-25px;
-        }
-        .slider-2 .owl-carousel .owl-nav div {
-            height: 50px;
-            width: 50px;
-            line-height: 50px;
-            text-align: center;
-            background: #00b74f;
-            color: #fff;
-            font-size: 26px;
-            position: absolute;
-            margin: 0;
-            -webkit-transition: all 0.4s ease;
-            -moz-transition: all 0.4s ease;
-            transition: all 0.4s ease;
-            padding: 0;
-            border-radius: 50%;
-        }
-        .slider-2 .owl-carousel .owl-nav div:hover{
-            background:#2C2D3F;
-            color:#fff;
-        }
-        .slider-2 .owl-carousel .owl-controls .owl-nav .owl-prev{
-            left:20px;
-        }
-        .slider-2 .owl-carousel .owl-controls .owl-nav .owl-next{
-            right:20px;
-        }
+//     // Iterate through slider data and create HTML for each slider
+//     slider.forEach((slider, index) => {
+//         const sliderHTML = `
+//         <style>
+//                     /*===========================
+//         \tStart Hero Area CSS
+//         =============================*/
+//         .slider-2 .single-slider-2 {
+//             height: 400px;
+//             background-size: cover;
+//             background-position: center;
+//             background-repeat:no-repeat;
+//             justify-content: center;
+//         }
+//         .slider-2 .single-slider-2 .text{
+//             margin-top:120px;
+//         }
+//         .slider-2.index2 .single-slider-2 .text{
+//             margin-top:150px;
+//         }
+//         .slider-2 .single-slider-2 h1 {
+//             color: #2C2D3F;
+//             font-size: 38px;
+//             font-weight: 700;
+//             margin: 0;
+//             padding: 0;
+//             line-height: 42px;
+//         }
+//         .slider-2 .single-slider-2 h1 span{
+//             color:#00b74f;
+//         }
+//         .slider-2 .single-slider-2 p {
+//             color: #000000;
+//             margin-top: 27px;
+//             font-weight: 400;
+//         }
+//         .slider-2 .single-slider-2 .button{
+//             margin-top:30px;
+//         }
+//         .slider-2 .single-slider-2 .btn{
+//             color:#fff;
+//             background:#00b74f;
+//             font-weight:500;
+//             display:inline-block;
+//             margin:0;
+//             margin-right:10px;
+//         }
+//         .slider-2 .single-slider-2 .btn:last-child{
+//             margin:0;
+//         }
+//         .slider-2 .single-slider-2 .btn.primary{
+//             background:#2C2D3F;
+//             color:#fff;
+//         }
+//         .slider-2 .single-slider-2 .btn.primary:before{
+//             background:#00b74f;
+//         }
+//         .slider-2 .owl-carousel .owl-nav {
+//             margin: 0;
+//             position: absolute;
+//             top: 50%;
+//             width: 100%;
+//             margin-top:-25px;
+//         }
+//         .slider-2 .owl-carousel .owl-nav div {
+//             height: 50px;
+//             width: 50px;
+//             line-height: 50px;
+//             text-align: center;
+//             background: #00b74f;
+//             color: #fff;
+//             font-size: 26px;
+//             position: absolute;
+//             margin: 0;
+//             -webkit-transition: all 0.4s ease;
+//             -moz-transition: all 0.4s ease;
+//             transition: all 0.4s ease;
+//             padding: 0;
+//             border-radius: 50%;
+//         }
+//         .slider-2 .owl-carousel .owl-nav div:hover{
+//             background:#2C2D3F;
+//             color:#fff;
+//         }
+//         .slider-2 .owl-carousel .owl-controls .owl-nav .owl-prev{
+//             left:20px;
+//         }
+//         .slider-2 .owl-carousel .owl-controls .owl-nav .owl-next{
+//             right:20px;
+//         }
         
-        /* slider-2 Animation */
-        .owl-item.active .single-slider-2 h1{
-            animation: fadeInUp 1s both 0.6s;
-        }
-        .owl-item.active .single-slider-2 p{
-            animation: fadeInUp 1s both 1s;
-        }
-        .owl-item.active .single-slider-2 .button{
-            animation: fadeInDown 1s both 1.5s;
-        }
-        /*===========================
-        \tEnd Hero Area CSS
-        =============================*/
-        </style>
-            <div class="single-slider" style="background-image:url('${slider.img}')">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <div class="text">
-                                <h1>We Provide <span>Data Services</span> That You Can <span>Trust!</span></h1>
-                                <p>${slider.p1}</p>
-                                <p>${slider.p2}</p>
-                                <div class="button">
-                                    <a href="Index.html" class="btn">Khám phá ngay</a>
-                                    <a href="Lienhe.html" class="btn">Liên hệ với chúng tôi</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+//         /* slider-2 Animation */
+//         .owl-item.active .single-slider-2 h1{
+//             animation: fadeInUp 1s both 0.6s;
+//         }
+//         .owl-item.active .single-slider-2 p{
+//             animation: fadeInUp 1s both 1s;
+//         }
+//         .owl-item.active .single-slider-2 .button{
+//             animation: fadeInDown 1s both 1.5s;
+//         }
+//         /*===========================
+//         \tEnd Hero Area CSS
+//         =============================*/
+//         </style>
+//             <div class="single-slider" style="background-image:url('${slider.img}')">
+//                 <div class="container">
+//                     <div class="row">
+//                         <div class="col-lg-7">
+//                             <div class="text">
+//                                 <h1>We Provide <span>Data Services</span> That You Can <span>Trust!</span></h1>
+//                                 <p>${slider.p1}</p>
+//                                 <p>${slider.p2}</p>
+//                                 <div class="button">
+//                                     <a href="Index.html" class="btn">Khám phá ngay</a>
+//                                     <a href="Lienhe.html" class="btn">Liên hệ với chúng tôi</a>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
 
-        // Append the slider HTML to the container
-        sliderListContainer.innerHTML += sliderHTML;
-    });
-    console.log('function called');
-}
+//         // Append the slider HTML to the container
+//         sliderListContainer.innerHTML += sliderHTML;
+//     });
+//     console.log('function called');
+// }
 
 document.addEventListener("DOMContentLoaded", function () {
     // Display the blogs on page load
