@@ -82,21 +82,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Function to check user permit and prevent access if permit is 0
-function checkUserPermit() {
-    const currentUser = getCurrentUser();
+// function checkUserPermit() {
+//     const currentUser = getCurrentUser();
 
-    if (currentUser && currentUser.permit === 0) {
-        // If user's permit is 0, prevent access and redirect to a restricted page
-        alert('Bạn không có quyền truy cập trang này. Vui lòng liên hệ với quản trị viên!');
-        window.location.href = 'login.html'; // Replace 'restricted.html' with your restricted page
-        logout();
-    }
-}
+//     if (currentUser && currentUser.permit === 0) {
+//         // If user's permit is 0, prevent access and redirect to a restricted page
+//         alert('Bạn không có quyền truy cập trang này. Vui lòng liên hệ với quản trị viên!');
+//         window.location.href = 'login.html'; // Replace 'restricted.html' with your restricted page
+//         logout();
+//     }
+// }
 
-// Call the checkUserPermit function on page load
-document.addEventListener('DOMContentLoaded', () => {
-    checkUserPermit();
-});
+// // Call the checkUserPermit function on page load
+// document.addEventListener('DOMContentLoaded', () => {
+//     checkUserPermit();
+// });
 
 // Function to require login before accessing the website
 function requireLogin() {
