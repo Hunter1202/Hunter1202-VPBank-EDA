@@ -54,7 +54,7 @@ function login() {
         setCurrentUser(user);
 
         // Check if the username is "admin" and redirect accordingly
-        if (username.toLowerCase() === "admin") {
+        if (username.toLowerCase() === "admin" || user.type.toLowerCase() === "admin") {
             // Redirect to admin.html if the username is "admin"
             window.location.href = "admin.html";
         } else {
@@ -70,10 +70,52 @@ function isLoggedIn() {
     return getCurrentUser() !== null;
 }
 
+function logout() {
+    sessionStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+}
+
 // Call the displayLoggedInUser function on loggedin.html page load
 document.addEventListener('DOMContentLoaded', () => {
     displayLoggedInUser();
     updateLoginButton();
+});
+
+// Function to check user permit and prevent access if permit is 0
+function checkUserPermit() {
+    const currentUser = getCurrentUser();
+
+    if (currentUser && currentUser.permit === 0) {
+        // If user's permit is 0, prevent access and redirect to a restricted page
+        alert('Bạn không có quyền truy cập trang này. Vui lòng liên hệ với quản trị viên!');
+        window.location.href = 'login.html'; // Replace 'restricted.html' with your restricted page
+        logout();
+    }
+}
+
+// Call the checkUserPermit function on page load
+document.addEventListener('DOMContentLoaded', () => {
+    checkUserPermit();
+});
+
+// Function to require login before accessing the website
+function requireLogin() {
+    // Get the current page URL
+    const currentPage = window.location.pathname.split('/').pop();
+
+    // List of pages where login is not required
+    const allowedPages = ['login.html', 'register.html'];
+
+    if (!allowedPages.includes(currentPage) && !isLoggedIn()) {
+        // If user is not logged in and not on an allowed page, redirect to the login page
+        alert('Bạn cần đăng nhập để truy cập trang này.');
+        window.location.href = 'login.html'; // Replace 'login.html' with your login page
+    }
+}
+
+// Call the requireLogin function on page load
+document.addEventListener('DOMContentLoaded', () => {
+    requireLogin();
 });
 
 
@@ -97,10 +139,6 @@ function updateLoginButton() {
         // If the user is not logged in, keep the button as "Đăng nhập"
         loginButton.innerHTML = '<a href="login.html" class="btn">Đăng nhập</a>';
     }
-}
-function logout() {
-    sessionStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
 }
 
 function displayUserConfiguration() {
@@ -228,7 +266,7 @@ function updateUser() {
 }
 
 function navigateToIndex() {
-    window.location.href = 'admin.html';
+    window.location.href = 'index.html';
 }
 
 
@@ -318,3 +356,6 @@ function updateConfigurationDiv(results) {
     configContainer.appendChild(table);
     configContainer.style.display = 'block';
 }
+
+
+
