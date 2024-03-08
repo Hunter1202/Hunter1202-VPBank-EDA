@@ -104,7 +104,7 @@ function requireLogin() {
     const currentPage = window.location.pathname.split('/').pop();
 
     // List of pages where login is not required
-    const allowedPages = ['login.html', 'register.html'];
+    const allowedPages = ['login.html', 'register.html', 'admin.html'];
 
     if (!allowedPages.includes(currentPage) && !isLoggedIn()) {
         // If user is not logged in and not on an allowed page, redirect to the login page
