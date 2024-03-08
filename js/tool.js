@@ -45,9 +45,8 @@ function addToolForm() {
     document.getElementById("admConfiguration").innerHTML = formHtml;
 }
 
-let ToolId = 0;
 function saveTool() {
-    ToolId++;
+    let ToolId = Date.now();
     let title = document.getElementById('title').value;
     let address = document.getElementById('address').value;
     let email = document.getElementById('email').value;
@@ -155,7 +154,7 @@ function editTool(id) {
     if (ToolToEdit) {
         // Set editingIndex to the index of the Tool being edited
         editingIndex = Tool.findIndex(Tool => Tool.ToolId === id);  // remember 2 fix this pls
-
+        console.log("id: " + id );
         // Populate the form fields with existing Tool data
         document.getElementById('title').value = ToolToEdit.title;
         document.getElementById('address').value = ToolToEdit.address;
@@ -167,6 +166,7 @@ function editTool(id) {
         // Open the edit user modal
         $('#editToolModal').modal('show');
     } else {
+        console.log("id: " + id );
         alert('Không tìm thấy Tool');
     }
 }
