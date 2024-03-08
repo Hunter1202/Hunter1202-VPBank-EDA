@@ -231,16 +231,16 @@ document.addEventListener("DOMContentLoaded", function () {
     displayBlogs();
 });
 
-function getUrlWithProtocol(url) {
-    if (!url.startsWith("http://") && !url.startsWith("https://")) {
-        return "http://" + url;
-    }
-    return url;
-}
+// function getUrlWithProtocol(url) {
+//     if (!url.startsWith("http://") && !url.startsWith("https://")) {
+//         return "http://" + url;
+//     }
+//     return url;
+// }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Display the Tools on page load
-    displayTools();
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//     // Display the Tools on page load
+//     displayTools();
+// });
 
